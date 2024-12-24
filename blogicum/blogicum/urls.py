@@ -1,4 +1,10 @@
-"""blogicum URL Configuration
+"""
+Добавлен путь для регистрации.
+Добавлена работа со статикой.
+Добывлены обработчики для кастомных страниц ошибок.
+Связано с требованиями: 1.6.
+
+blogicum URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.2/topics/http/urls/

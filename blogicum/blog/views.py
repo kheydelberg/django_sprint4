@@ -1,3 +1,10 @@
+"""
+Вью функции заменены на CBV. Через классы мне работать оказалось удобней.
+Для редиректа используется reverse_lazy вместо reverse для избежания ошибок.
+Связано с требованиями: 1.3., 1.4., 1.5., 1.6., 1.7., 1.8.,
+1.9., 1.10., 1.12., 1.13., 1.14., 1.15, 2.3 2.5., 2.7
+"""
+
 from django.shortcuts import get_object_or_404, redirect
 from blog.models import Category, Post
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -91,11 +98,11 @@ class PostDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         """Добавляет форму комментария и список комментариев в контекст."""
-        return dict(
-            **super().get_context_data(**kwargs),
-            form=CommentForm(),
-            comments=self.object.comments.select_related('author'),
-        )
+        context = super().get_context_data(**kwargs)
+        context['form'] = CommentForm()
+        context['comments'] = self.object.comments.select_related('author')
+
+        return context
 
 
 class CategoryListView(ListView):
@@ -121,7 +128,6 @@ class CategoryListView(ListView):
     def get_context_data(self, **kwargs):
         """Добавляет информацию о категории в контекст."""
         context = super().get_context_data(**kwargs)
-        # Добавляем категорию в контекст
         category = get_object_or_404(
             Category,
             is_published=True,

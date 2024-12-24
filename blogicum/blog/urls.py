@@ -1,3 +1,10 @@
+"""
+Добавлены новые пути для создания, редактирования, удаления поста/комментариев.
+Добавлен аналог декоратора @login_required для работы с CBV.
+Переписаны прошлые вьюшки под классы.
+Связано с требованиями: 1.4., 1.5., 1.6., 1.7., 1.14
+"""
+
 from django.urls import path
 from . import views
 from django.contrib.auth.decorators import login_required
